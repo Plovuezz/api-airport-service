@@ -42,9 +42,16 @@ class RouteSerializer(serializers.ModelSerializer):
 
 
 class RouteListSerializer(serializers.ModelSerializer):
+    source = serializers.CharField(
+        source="source.closest_big_city", read_only=True,
+    )
+    destination = serializers.CharField(
+        source="destination.closest_big_city", read_only=True,
+    )
+
     class Meta:
         model = Route
-        fields = ("id", "full_path")
+        fields = ("id", "source", "destination", "full_path")
 
 
 class RouteDetailSerializer(serializers.ModelSerializer):
@@ -54,8 +61,8 @@ class RouteDetailSerializer(serializers.ModelSerializer):
 
 
 class RouteFlightSerializer(serializers.ModelSerializer):
-    source = serializers.CharField(source="source.name", read_only=True)
-    destination = serializers.CharField(source="destination.name", read_only=True)
+    source = serializers.CharField(source="source.closest_big_city", read_only=True)
+    destination = serializers.CharField(source="destination.closest_big_city", read_only=True)
 
     class Meta:
         model = Route
@@ -186,7 +193,7 @@ class TicketListSerializer(TicketSerializer):
 
 class OrderSerializer(serializers.ModelSerializer):
     tickets = TicketSerializer(many=True, allow_empty=False)
-    created_at = serializers.DateTimeField(format="%B-%d, %Y %H:%M")
+    created_at = serializers.DateTimeField(format="%B-%d, %Y %H:%M", read_only=True)
 
     class Meta:
         model = Order

@@ -5,7 +5,13 @@ from rest_framework.filters import SearchFilter
 from rest_framework.permissions import IsAuthenticated
 from django_filters.rest_framework import DjangoFilterBackend
 
-from airport.filters import RouteFilter, AirportFilter, AirplaneFilter, FlightFilter, TicketFilter
+from airport.filters import (
+    RouteFilter,
+    AirportFilter,
+    AirplaneFilter,
+    FlightFilter,
+    TicketFilter
+)
 from airport.models import (
     Crew,
     Airport,
@@ -160,7 +166,7 @@ class OrderViewSet(
         return OrderSerializer
 
 
-class TicketViewSet(viewsets.ModelViewSet):
+class TicketViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Ticket.objects.select_related(
         "flight",
         "flight__route__source",

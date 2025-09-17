@@ -4,10 +4,10 @@ from airport.models import Route, Airport, Airplane, Flight, Ticket
 
 class RouteFilter(django_filters.FilterSet):
     source = django_filters.CharFilter(
-        field_name="source__name", lookup_expr="icontains"
+        field_name="source__closest_big_city", lookup_expr="icontains"
     )
     destination = django_filters.CharFilter(
-        field_name="destination__name", lookup_expr="icontains"
+        field_name="destination__closest_big_city", lookup_expr="icontains"
     )
 
     class Meta:
@@ -43,10 +43,10 @@ class AirplaneFilter(django_filters.FilterSet):
 
 class FlightFilter(django_filters.FilterSet):
     source = django_filters.CharFilter(
-        field_name="route__source__name", lookup_expr="icontains"
+        field_name="route__source__closest_big_city", lookup_expr="icontains"
     )
     destination = django_filters.CharFilter(
-        field_name="route__destination__name", lookup_expr="icontains"
+        field_name="route__destination__closest_big_city", lookup_expr="icontains"
     )
     airplane = django_filters.CharFilter(
         field_name="airplane__name", lookup_expr="icontains"
