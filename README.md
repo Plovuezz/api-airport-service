@@ -5,7 +5,7 @@ This service provides functionality for managing flights, tickets, orders, route
 
 ---
 
-## 🚀 Installation
+## Installation
 
 ### 1. Clone the repository
 ```bash
@@ -41,7 +41,7 @@ python manage.py runserver
 
 ---
 
-## ✈️ Features
+## Features
 
 - 🔑 **JWT authentication** – secure access with JSON Web Tokens  
 - ⚙️ **Admin panel** – available at `/admin/`  
@@ -55,7 +55,7 @@ python manage.py runserver
 
 ---
 
-## 🐳 Run with Docker
+## Run with Docker
 
 ```bash
 docker-compose up --build
